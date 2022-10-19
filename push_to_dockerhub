@@ -1,0 +1,11 @@
+#!/bin/bash
+
+VERSION=v0.0.1
+PLATFORMS=linux/amd64,linux/arm64
+
+docker buildx build --platform linux/amd64,linux/arm64 -t kernai/refinery_base_image:$VERSION-mini -f mini.Dockerfile --push .
+
+docker buildx build -t kernai/refinery-parent-images:$VERSION-mini -f mini.Dockerfile --platform $PLATFORMS .
+docker buildx build -t kernai/refinery-parent-images:$VERSION-common -f common.Dockerfile --platform $PLATFORMS .
+docker buildx build -t kernai/refinery-parent-images:$VERSION-exec-env -f exec-env.Dockerfile --platform $PLATFORMS .
+docker buildx build -t kernai/refinery-parent-images:$VERSION-torch-cpu -f torch-cpu.Dockerfile --platform $PLATFORMS .
