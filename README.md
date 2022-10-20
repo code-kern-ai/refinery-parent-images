@@ -11,20 +11,21 @@ Services:
 - refinery-config
 - refinery-doc-ock
 - refinery-gateway-proxy
-- refinery-updater
 
 ### common
 The common parent images is based on the python-slim image.
 It contains all requirements contained in the mini image and also the most common requirements of the different services.
 
 - refinery-gateway
+- refinery-model-provider
 - refinery-neural-search
 - refinery-tokenizer
+- refinery-updater
 - refinery-weak-supervisor
 
 ### exec-env
 The exec-env parent image is based on the python-slim image.
-It has all requirements installed which are also part of the mini image.
+It contains all requirements which are needed for the execution environments.
 
 Services:
 - refinery-ac-exec-env
