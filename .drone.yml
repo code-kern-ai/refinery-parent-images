@@ -58,7 +58,7 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: amd64-torch-cpu
+name: amd64-common
 
 platform:
   arch: amd64
@@ -67,17 +67,17 @@ steps:
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: torch-cpu.Dockerfile
+      dockerfile: common.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-torch-cpu", "${DRONE_COMMIT_BRANCH}-torch-cpu"]
+      tags: ["${DRONE_COMMIT_SHA}-common", "${DRONE_COMMIT_BRANCH}-common"]
       cache_from:
         - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common"
 
 trigger:
   event:
@@ -86,7 +86,7 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: arm64-torch-cpu
+name: arm64-common
 
 platform:
   arch: arm64
@@ -95,17 +95,17 @@ steps:
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: torch-cpu.Dockerfile
+      dockerfile: common.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-torch-cpu-arm64", "${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"]
+      tags: ["${DRONE_COMMIT_SHA}-common-arm64", "${DRONE_COMMIT_BRANCH}-common-arm64"]
       cache_from:
         - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common-arm64"
 
 trigger:
   branch:
@@ -174,7 +174,7 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: amd64-common
+name: amd64-torch-cpu
 
 platform:
   arch: amd64
@@ -183,17 +183,17 @@ steps:
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: common.Dockerfile
+      dockerfile: torch-cpu.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-common", "${DRONE_COMMIT_BRANCH}-common"]
+      tags: ["${DRONE_COMMIT_SHA}-torch-cpu", "${DRONE_COMMIT_BRANCH}-torch-cpu"]
       cache_from:
         - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu"
 
 trigger:
   event:
@@ -202,7 +202,7 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: arm64-common
+name: arm64-torch-cpu
 
 platform:
   arch: arm64
@@ -211,17 +211,17 @@ steps:
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: common.Dockerfile
+      dockerfile: torch-cpu.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-common-arm64", "${DRONE_COMMIT_BRANCH}-common-arm64"]
+      tags: ["${DRONE_COMMIT_SHA}-torch-cpu-arm64", "${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"]
       cache_from:
         - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common-arm64"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"
 
 trigger:
   branch:
@@ -279,7 +279,7 @@ trigger:
 
 ---
 kind: pipeline
-name: manifest-version
+name: manifest-mini
 steps:
 - name: manifest
   image: plugins/manifest
@@ -350,7 +350,7 @@ trigger:
 
 ---
 kind: pipeline
-name: manifest-version
+name: manifest-common
 steps:
 - name: manifest
   image: plugins/manifest
@@ -421,7 +421,7 @@ trigger:
 
 ---
 kind: pipeline
-name: manifest-version
+name: manifest-exec-env
 steps:
 - name: manifest
   image: plugins/manifest
@@ -492,7 +492,7 @@ trigger:
 
 ---
 kind: pipeline
-name: manifest-version
+name: manifest-torch-cpu
 steps:
 - name: manifest
   image: plugins/manifest
