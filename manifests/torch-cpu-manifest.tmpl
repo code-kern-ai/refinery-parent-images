@@ -1,4 +1,4 @@
-image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}}{{else}}latest{{/if}}
+image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}-torch-cpu}{{else}}latest{{/if}}
 {{#if build.tags}}
 tags:
 {{#each build.tags}}
@@ -7,12 +7,12 @@ tags:
 {{/if}}
 manifests:
   -
-    image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}}-{{/if}}torch-cpu-amd64
+    image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}}-{{/if}}torch-cpu-drone-amd64
     platform:
       architecture: amd64
       os: linux
   -
-    image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}}-{{/if}}torch-cpu-arm64
+    image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}}-{{/if}}torch-cpu-drone-arm64
     platform:
       architecture: arm64
       os: linux
