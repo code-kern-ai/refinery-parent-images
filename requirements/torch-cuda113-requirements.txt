@@ -1,0 +1,11 @@
+boto3
+fastapi
+minio
+numpy
+pandas
+psycopg2-binary
+pydantic
+requests
+SQLAlchemy
+transformers
+uvicorn
