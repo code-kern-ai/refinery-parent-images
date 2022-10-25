@@ -71,7 +71,7 @@ TORCH_CPU_PARENT_IMAGE = "kernai/refinery-parent-images:{version}-torch-cpu"
 ###
 REQUIREMENTS_DIR = "requirements"
 
-MINI_REQUIREMENTS = "requirements-mini.txt"
-COMMON_REQUIREMENTS = "requirements-common.txt"
-EXEC_ENV_REQUIREMENTS = "requirements-exec-env.txt"
-TORCH_CPU_REQUIREMENTS = "requirements-torch-cpu.txt"
+MINI_REQUIREMENTS = "mini-requirements.txt"
+COMMON_REQUIREMENTS = "common-requirements.txt"
+EXEC_ENV_REQUIREMENTS = "exec-env-requirements.txt"
+TORCH_CPU_REQUIREMENTS = "torch-cpu-requirements.txt"
