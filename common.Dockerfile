@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.9-slim
 
 COPY requirements/mini-requirements.txt .
 COPY requirements/common-requirements.txt .
