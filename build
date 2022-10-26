@@ -1,0 +1,8 @@
+#!/bin/bash
+
+VERSION=v1.5.0
+
+docker build -t kernai/refinery-parent-images:$VERSION-mini -f mini.Dockerfile .
+docker build -t kernai/refinery-parent-images:$VERSION-common -f common.Dockerfile .
+docker build -t kernai/refinery-parent-images:$VERSION-exec-env -f exec-env.Dockerfile .
+docker build -t kernai/refinery-parent-images:$VERSION-torch-cpu -f torch-cpu.Dockerfile .

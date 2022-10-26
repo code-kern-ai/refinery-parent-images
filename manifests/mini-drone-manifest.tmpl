@@ -1,0 +1,19 @@
+image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}-mini}{{else}}latest{{/if}}
+{{#if build.tags}}
+tags:
+{{#each build.tags}}
+  - {{this}}
+{{/each}}
+{{/if}}
+manifests:
+  -
+    image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}}-{{/if}}mini-drone-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}}-{{/if}}mini-drone-arm64
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8
