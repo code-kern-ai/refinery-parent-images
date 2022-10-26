@@ -1,177 +1,177 @@
-kind: pipeline
-type: docker
-name: amd64-mini
+# kind: pipeline
+# type: docker
+# name: amd64-mini
 
-platform:
-  arch: amd64
+# platform:
+#   arch: amd64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: mini.Dockerfile
-      registry: registry.dev.onetask.ai
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-      repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-mini", "${DRONE_COMMIT_BRANCH}-mini"]
-      cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-mini"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: mini.Dockerfile
+#       registry: registry.dev.onetask.ai
+#       username:
+#         from_secret: docker_username
+#       password:
+#         from_secret: docker_password
+#       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
+#       tags: ["${DRONE_COMMIT_SHA}-mini", "${DRONE_COMMIT_BRANCH}-mini"]
+#       cache_from:
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-mini"
 
-trigger:
-  event:
-    - push
+# trigger:
+#   event:
+#     - push
 
----
-kind: pipeline
-type: docker
-name: arm64-mini
+# ---
+# kind: pipeline
+# type: docker
+# name: arm64-mini
 
-platform:
-  arch: arm64
+# platform:
+#   arch: arm64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: mini.Dockerfile
-      registry: registry.dev.onetask.ai
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-      repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-mini-arm64", "${DRONE_COMMIT_BRANCH}-mini-arm64"]
-      cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-mini-arm64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: mini.Dockerfile
+#       registry: registry.dev.onetask.ai
+#       username:
+#         from_secret: docker_username
+#       password:
+#         from_secret: docker_password
+#       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
+#       tags: ["${DRONE_COMMIT_SHA}-mini-arm64", "${DRONE_COMMIT_BRANCH}-mini-arm64"]
+#       cache_from:
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-mini-arm64"
 
-trigger:
-  branch:
-    - dev
-  event:
-    - push
+# trigger:
+#   branch:
+#     - dev
+#   event:
+#     - push
 
----
-kind: pipeline
-type: docker
-name: amd64-common
+# ---
+# kind: pipeline
+# type: docker
+# name: amd64-common
 
-platform:
-  arch: amd64
+# platform:
+#   arch: amd64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: common.Dockerfile
-      registry: registry.dev.onetask.ai
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-      repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-common", "${DRONE_COMMIT_BRANCH}-common"]
-      cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: common.Dockerfile
+#       registry: registry.dev.onetask.ai
+#       username:
+#         from_secret: docker_username
+#       password:
+#         from_secret: docker_password
+#       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
+#       tags: ["${DRONE_COMMIT_SHA}-common", "${DRONE_COMMIT_BRANCH}-common"]
+#       cache_from:
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common"
 
-trigger:
-  event:
-    - push
+# trigger:
+#   event:
+#     - push
 
----
-kind: pipeline
-type: docker
-name: arm64-common
+# ---
+# kind: pipeline
+# type: docker
+# name: arm64-common
 
-platform:
-  arch: arm64
+# platform:
+#   arch: arm64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: common.Dockerfile
-      registry: registry.dev.onetask.ai
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-      repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-common-arm64", "${DRONE_COMMIT_BRANCH}-common-arm64"]
-      cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common-arm64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: common.Dockerfile
+#       registry: registry.dev.onetask.ai
+#       username:
+#         from_secret: docker_username
+#       password:
+#         from_secret: docker_password
+#       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
+#       tags: ["${DRONE_COMMIT_SHA}-common-arm64", "${DRONE_COMMIT_BRANCH}-common-arm64"]
+#       cache_from:
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common-arm64"
 
-trigger:
-  branch:
-    - dev
-  event:
-    - push
+# trigger:
+#   branch:
+#     - dev
+#   event:
+#     - push
 
----
-kind: pipeline
-type: docker
-name: amd64-exec-env
+# ---
+# kind: pipeline
+# type: docker
+# name: amd64-exec-env
 
-platform:
-  arch: amd64
+# platform:
+#   arch: amd64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: exec-env.Dockerfile
-      registry: registry.dev.onetask.ai
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-      repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-exec-env", "${DRONE_COMMIT_BRANCH}-exec-env"]
-      cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-exec-env"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: exec-env.Dockerfile
+#       registry: registry.dev.onetask.ai
+#       username:
+#         from_secret: docker_username
+#       password:
+#         from_secret: docker_password
+#       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
+#       tags: ["${DRONE_COMMIT_SHA}-exec-env", "${DRONE_COMMIT_BRANCH}-exec-env"]
+#       cache_from:
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-exec-env"
 
-trigger:
-  event:
-    - push
+# trigger:
+#   event:
+#     - push
 
----
-kind: pipeline
-type: docker
-name: arm64-exec-env
+# ---
+# kind: pipeline
+# type: docker
+# name: arm64-exec-env
 
-platform:
-  arch: arm64
+# platform:
+#   arch: arm64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: exec-env.Dockerfile
-      registry: registry.dev.onetask.ai
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-      repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-exec-env-arm64", "${DRONE_COMMIT_BRANCH}-exec-env-arm64"]
-      cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-exec-env-arm64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: exec-env.Dockerfile
+#       registry: registry.dev.onetask.ai
+#       username:
+#         from_secret: docker_username
+#       password:
+#         from_secret: docker_password
+#       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
+#       tags: ["${DRONE_COMMIT_SHA}-exec-env-arm64", "${DRONE_COMMIT_BRANCH}-exec-env-arm64"]
+#       cache_from:
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-exec-env-arm64"
 
-trigger:
-  branch:
-    - dev
-  event:
-    - push
+# trigger:
+#   branch:
+#     - dev
+#   event:
+#     - push
 
----
+# ---
 kind: pipeline
 type: docker
 name: amd64-torch-cpu
@@ -183,7 +183,8 @@ steps:
   - name: set base file
     image: alpine
     commands:
-      - sed -i 's/CURRENT_BRANCH_NAME/$DRONE_COMMIT_BRANCH/' torch-cpu.dev.Dockerfile
+      - sed -i 's/CURRENT_BRANCH_NAME/${DRONE_COMMIT_BRANCH}/' torch-cpu.dev.Dockerfile
+      - cat torch-cpu.dev.Dockerfile
   - name: build and publish
     image: plugins/docker
     settings:
@@ -199,8 +200,8 @@ steps:
         - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu"
 
-depends_on:
-  - amd64-common
+# depends_on:
+#   - amd64-common
 
 trigger:
   event:
