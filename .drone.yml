@@ -207,325 +207,325 @@ trigger:
   event:
     - push
 
----
-kind: pipeline
-type: docker
-name: arm64-torch-cpu
+# ---
+# kind: pipeline
+# type: docker
+# name: arm64-torch-cpu
 
-platform:
-  arch: arm64
+# platform:
+#   arch: arm64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: torch-cpu.dev.Dockerfile
-      registry: registry.dev.onetask.ai
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-      repo: "registry.dev.onetask.ai/${DRONE_REPO}"
-      tags: ["${DRONE_COMMIT_SHA}-torch-cpu-arm64", "${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"]
-      cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
-        - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: torch-cpu.dev.Dockerfile
+#       registry: registry.dev.onetask.ai
+#       username:
+#         from_secret: docker_username
+#       password:
+#         from_secret: docker_password
+#       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
+#       tags: ["${DRONE_COMMIT_SHA}-torch-cpu-arm64", "${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"]
+#       cache_from:
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
+#         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"
 
-depends_on:
-  - arm64-common
+# depends_on:
+#   - arm64-common
 
-trigger:
-  branch:
-    - dev
-  event:
-    - push
+# trigger:
+#   branch:
+#     - dev
+#   event:
+#     - push
 
----
-kind: pipeline
-type: docker
-name: amd64-mini-dockerhub
+# ---
+# kind: pipeline
+# type: docker
+# name: amd64-mini-dockerhub
 
-platform:
-  arch: amd64
+# platform:
+#   arch: amd64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: mini.Dockerfile
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: "kernai/${DRONE_REPO_NAME}"
-      tag: "${DRONE_TAG}-mini-drone-amd64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: mini.Dockerfile
+#       username:
+#         from_secret: dockerhub_username
+#       password:
+#         from_secret: dockerhub_password
+#       repo: "kernai/${DRONE_REPO_NAME}"
+#       tag: "${DRONE_TAG}-mini-drone-amd64"
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-type: docker
-name: arm64-mini-dockerhub
+# ---
+# kind: pipeline
+# type: docker
+# name: arm64-mini-dockerhub
 
-platform:
-  arch: arm64
+# platform:
+#   arch: arm64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: mini.Dockerfile
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: "kernai/${DRONE_REPO_NAME}"
-      tag: "${DRONE_TAG}-mini-drone-arm64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: mini.Dockerfile
+#       username:
+#         from_secret: dockerhub_username
+#       password:
+#         from_secret: dockerhub_password
+#       repo: "kernai/${DRONE_REPO_NAME}"
+#       tag: "${DRONE_TAG}-mini-drone-arm64"
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-name: manifest-mini
-steps:
-- name: manifest
-  image: plugins/manifest
-  settings:
-    spec: manifests/mini-drone-manifest.tmpl
-    tag: "${DRONE_TAG}-mini"
-    ignore_missing: true
-    username:
-      from_secret: dockerhub_username
-    password:
-      from_secret: dockerhub_password
+# ---
+# kind: pipeline
+# name: manifest-mini
+# steps:
+# - name: manifest
+#   image: plugins/manifest
+#   settings:
+#     spec: manifests/mini-drone-manifest.tmpl
+#     tag: "${DRONE_TAG}-mini"
+#     ignore_missing: true
+#     username:
+#       from_secret: dockerhub_username
+#     password:
+#       from_secret: dockerhub_password
 
-depends_on:
-  - amd64-mini-dockerhub
-  - arm64-mini-dockerhub
+# depends_on:
+#   - amd64-mini-dockerhub
+#   - arm64-mini-dockerhub
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-type: docker
-name: amd64-common-dockerhub
+# ---
+# kind: pipeline
+# type: docker
+# name: amd64-common-dockerhub
 
-platform:
-  arch: amd64
+# platform:
+#   arch: amd64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: common.Dockerfile
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: "kernai/${DRONE_REPO_NAME}"
-      tag: "${DRONE_TAG}-common-drone-amd64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: common.Dockerfile
+#       username:
+#         from_secret: dockerhub_username
+#       password:
+#         from_secret: dockerhub_password
+#       repo: "kernai/${DRONE_REPO_NAME}"
+#       tag: "${DRONE_TAG}-common-drone-amd64"
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-type: docker
-name: arm64-common-dockerhub
+# ---
+# kind: pipeline
+# type: docker
+# name: arm64-common-dockerhub
 
-platform:
-  arch: arm64
+# platform:
+#   arch: arm64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: common.Dockerfile
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: "kernai/${DRONE_REPO_NAME}"
-      tag: "${DRONE_TAG}-common-drone-arm64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: common.Dockerfile
+#       username:
+#         from_secret: dockerhub_username
+#       password:
+#         from_secret: dockerhub_password
+#       repo: "kernai/${DRONE_REPO_NAME}"
+#       tag: "${DRONE_TAG}-common-drone-arm64"
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-name: manifest-common
-steps:
-- name: manifest
-  image: plugins/manifest
-  settings:
-    spec: manifests/common-drone-manifest.tmpl
-    tag: "${DRONE_TAG}-common"
-    ignore_missing: true
-    username:
-      from_secret: dockerhub_username
-    password:
-      from_secret: dockerhub_password
+# ---
+# kind: pipeline
+# name: manifest-common
+# steps:
+# - name: manifest
+#   image: plugins/manifest
+#   settings:
+#     spec: manifests/common-drone-manifest.tmpl
+#     tag: "${DRONE_TAG}-common"
+#     ignore_missing: true
+#     username:
+#       from_secret: dockerhub_username
+#     password:
+#       from_secret: dockerhub_password
 
-depends_on:
-  - amd64-common-dockerhub
-  - arm64-common-dockerhub
+# depends_on:
+#   - amd64-common-dockerhub
+#   - arm64-common-dockerhub
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-type: docker
-name: amd64-exec-env-dockerhub
+# ---
+# kind: pipeline
+# type: docker
+# name: amd64-exec-env-dockerhub
 
-platform:
-  arch: amd64
+# platform:
+#   arch: amd64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: exec-env.Dockerfile
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: "kernai/${DRONE_REPO_NAME}"
-      tag: "${DRONE_TAG}-exec-env-drone-amd64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: exec-env.Dockerfile
+#       username:
+#         from_secret: dockerhub_username
+#       password:
+#         from_secret: dockerhub_password
+#       repo: "kernai/${DRONE_REPO_NAME}"
+#       tag: "${DRONE_TAG}-exec-env-drone-amd64"
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-type: docker
-name: arm64-exec-env-dockerhub
+# ---
+# kind: pipeline
+# type: docker
+# name: arm64-exec-env-dockerhub
 
-platform:
-  arch: arm64
+# platform:
+#   arch: arm64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: exec-env.Dockerfile
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: "kernai/${DRONE_REPO_NAME}"
-      tag: "${DRONE_TAG}-exec-env-drone-arm64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: exec-env.Dockerfile
+#       username:
+#         from_secret: dockerhub_username
+#       password:
+#         from_secret: dockerhub_password
+#       repo: "kernai/${DRONE_REPO_NAME}"
+#       tag: "${DRONE_TAG}-exec-env-drone-arm64"
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-name: manifest-exec-env
-steps:
-- name: manifest
-  image: plugins/manifest
-  settings:
-    spec: manifests/exec-env-drone-manifest.tmpl
-    tag: "${DRONE_TAG}-exec-env"
-    ignore_missing: true
-    username:
-      from_secret: dockerhub_username
-    password:
-      from_secret: dockerhub_password
+# ---
+# kind: pipeline
+# name: manifest-exec-env
+# steps:
+# - name: manifest
+#   image: plugins/manifest
+#   settings:
+#     spec: manifests/exec-env-drone-manifest.tmpl
+#     tag: "${DRONE_TAG}-exec-env"
+#     ignore_missing: true
+#     username:
+#       from_secret: dockerhub_username
+#     password:
+#       from_secret: dockerhub_password
 
-depends_on:
-  - amd64-exec-env-dockerhub
-  - arm64-exec-env-dockerhub
+# depends_on:
+#   - amd64-exec-env-dockerhub
+#   - arm64-exec-env-dockerhub
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-type: docker
-name: amd64-torch-cpu-dockerhub
+# ---
+# kind: pipeline
+# type: docker
+# name: amd64-torch-cpu-dockerhub
 
-platform:
-  arch: amd64
+# platform:
+#   arch: amd64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: torch-cpu.Dockerfile
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: "kernai/${DRONE_REPO_NAME}"
-      tag: "${DRONE_TAG}-torch-cpu-drone-amd64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: torch-cpu.Dockerfile
+#       username:
+#         from_secret: dockerhub_username
+#       password:
+#         from_secret: dockerhub_password
+#       repo: "kernai/${DRONE_REPO_NAME}"
+#       tag: "${DRONE_TAG}-torch-cpu-drone-amd64"
 
-depends_on:
-  - manifest-common
+# depends_on:
+#   - manifest-common
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-type: docker
-name: arm64-torch-cpu-dockerhub
+# ---
+# kind: pipeline
+# type: docker
+# name: arm64-torch-cpu-dockerhub
 
-platform:
-  arch: arm64
+# platform:
+#   arch: arm64
 
-steps:
-  - name: build and publish
-    image: plugins/docker
-    settings:
-      dockerfile: torch-cpu.Dockerfile
-      username:
-        from_secret: dockerhub_username
-      password:
-        from_secret: dockerhub_password
-      repo: "kernai/${DRONE_REPO_NAME}"
-      tag: "${DRONE_TAG}-torch-cpu-drone-arm64"
+# steps:
+#   - name: build and publish
+#     image: plugins/docker
+#     settings:
+#       dockerfile: torch-cpu.Dockerfile
+#       username:
+#         from_secret: dockerhub_username
+#       password:
+#         from_secret: dockerhub_password
+#       repo: "kernai/${DRONE_REPO_NAME}"
+#       tag: "${DRONE_TAG}-torch-cpu-drone-arm64"
 
-depends_on:
-  - manifest-common
+# depends_on:
+#   - manifest-common
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
 
----
-kind: pipeline
-name: manifest-torch-cpu
-steps:
-- name: manifest
-  image: plugins/manifest
-  settings:
-    spec: manifests/torch-cpu-drone-manifest.tmpl
-    tag: "${DRONE_TAG}-torch-cpu"
-    ignore_missing: true
-    username:
-      from_secret: dockerhub_username
-    password:
-      from_secret: dockerhub_password
+# ---
+# kind: pipeline
+# name: manifest-torch-cpu
+# steps:
+# - name: manifest
+#   image: plugins/manifest
+#   settings:
+#     spec: manifests/torch-cpu-drone-manifest.tmpl
+#     tag: "${DRONE_TAG}-torch-cpu"
+#     ignore_missing: true
+#     username:
+#       from_secret: dockerhub_username
+#     password:
+#       from_secret: dockerhub_password
 
-depends_on:
-  - amd64-torch-cpu-dockerhub
-  - arm64-torch-cpu-dockerhub
+# depends_on:
+#   - amd64-torch-cpu-dockerhub
+#   - arm64-torch-cpu-dockerhub
 
-trigger:
-  event:
-    - tag
+# trigger:
+#   event:
+#     - tag
