@@ -1,4 +1,4 @@
-image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}-mini}{{else}}latest{{/if}}
+image: kernai/refinery-parent-images:{{#if build.tag}}{{build.tag}}{{else}}latest{{/if}}
 {{#if build.tags}}
 tags:
 {{#each build.tags}}
