@@ -201,8 +201,8 @@ steps:
         - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu"
 
-# depends_on:
-#   - amd64-common
+depends_on:
+  - amd64-common
 
 trigger:
   event:
