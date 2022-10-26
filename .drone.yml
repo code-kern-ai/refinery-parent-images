@@ -180,6 +180,10 @@ platform:
   arch: amd64
 
 steps:
+  - name: set base file
+    image: alpine
+    commands:
+      - sed -i 's/CURRENT_BRANCH_NAME/$DRONE_COMMIT_BRANCH' torch-cpu.dev.Dockerfile
   - name: build and publish
     image: plugins/docker
     settings:
