@@ -183,7 +183,7 @@ steps:
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: torch-cpu.Dockerfile
+      dockerfile: torch-cpu.dev.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
@@ -214,7 +214,7 @@ steps:
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: torch-cpu.Dockerfile
+      dockerfile: torch-cpu.dev.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
