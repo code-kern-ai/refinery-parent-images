@@ -185,6 +185,7 @@ steps:
     commands:
       - sed -i 's/CURRENT_BRANCH_NAME/${DRONE_COMMIT_BRANCH}/' torch-cpu.dev.Dockerfile
       - cat torch-cpu.dev.Dockerfile
+      - echo ${DRONE_COMMIT_BRANCH}
   - name: build and publish
     image: plugins/docker
     settings:
