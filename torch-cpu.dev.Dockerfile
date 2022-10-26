@@ -1,4 +1,4 @@
-FROM registry.dev.onetask.ai/refinery-parent-images:CURRENT_BRANCH_NAME-common
+FROM registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:CURRENT_BRANCH_NAME-common
 
 COPY requirements/torch-cpu-requirements.txt .
 
