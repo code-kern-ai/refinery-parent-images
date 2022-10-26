@@ -1,4 +1,4 @@
-FROM kernai/refinery-parent-images:v0.0.1-common
+FROM kernai/refinery-parent-images:v1.5.0-common
 
 COPY requirements/torch-cpu-requirements.txt .
 
