@@ -296,7 +296,7 @@ steps:
 - name: manifest
   image: plugins/manifest
   settings:
-    spec: manifests/mini-drone-manifest.tmpl
+    spec: manifests/mini-manifest.tmpl
     tag: "${DRONE_TAG}-mini"
     ignore_missing: true
     username:
@@ -367,7 +367,7 @@ steps:
 - name: manifest
   image: plugins/manifest
   settings:
-    spec: manifests/common-drone-manifest.tmpl
+    spec: manifests/common-manifest.tmpl
     tag: "${DRONE_TAG}-common"
     ignore_missing: true
     username:
@@ -438,7 +438,7 @@ steps:
 - name: manifest
   image: plugins/manifest
   settings:
-    spec: manifests/exec-env-drone-manifest.tmpl
+    spec: manifests/exec-env-manifest.tmpl
     tag: "${DRONE_TAG}-exec-env"
     ignore_missing: true
     username:
@@ -515,7 +515,7 @@ steps:
 - name: manifest
   image: plugins/manifest
   settings:
-    spec: manifests/torch-cpu-drone-manifest.tmpl
+    spec: manifests/torch-cpu-manifest.tmpl
     tag: "${DRONE_TAG}-torch-cpu"
     ignore_missing: true
     username:
