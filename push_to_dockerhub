@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# version needs to be changed in build and push_to_dockerhub script and in the
+# torch-cpu.Dockerfile
 VERSION=v1.5.0
 PLATFORMS=linux/amd64,linux/arm64
 
