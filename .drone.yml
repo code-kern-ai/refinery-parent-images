@@ -297,7 +297,6 @@ steps:
   image: plugins/manifest
   settings:
     spec: manifests/mini-manifest.tmpl
-    ignore_missing: true
     username:
       from_secret: dockerhub_username
     password:
@@ -367,7 +366,6 @@ steps:
   image: plugins/manifest
   settings:
     spec: manifests/common-manifest.tmpl
-    ignore_missing: true
     username:
       from_secret: dockerhub_username
     password:
@@ -437,7 +435,6 @@ steps:
   image: plugins/manifest
   settings:
     spec: manifests/exec-env-manifest.tmpl
-    ignore_missing: true
     username:
       from_secret: dockerhub_username
     password:
@@ -513,7 +510,6 @@ steps:
   image: plugins/manifest
   settings:
     spec: manifests/torch-cpu-manifest.tmpl
-    ignore_missing: true
     username:
       from_secret: dockerhub_username
     password:
