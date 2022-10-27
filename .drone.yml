@@ -18,7 +18,7 @@ steps:
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
       tags: ["${DRONE_COMMIT_SHA}-mini", "${DRONE_COMMIT_BRANCH}-mini"]
       cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:dev-mini"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-mini"
 
 trigger:
@@ -46,7 +46,7 @@ steps:
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
       tags: ["${DRONE_COMMIT_SHA}-mini-arm64", "${DRONE_COMMIT_BRANCH}-mini-arm64"]
       cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:dev-mini-arm64"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-mini-arm64"
 
 trigger:
@@ -76,7 +76,7 @@ steps:
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
       tags: ["${DRONE_COMMIT_SHA}-common", "${DRONE_COMMIT_BRANCH}-common"]
       cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:dev-common"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common"
 
 trigger:
@@ -104,7 +104,7 @@ steps:
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
       tags: ["${DRONE_COMMIT_SHA}-common-arm64", "${DRONE_COMMIT_BRANCH}-common-arm64"]
       cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:dev-common-arm64"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-common-arm64"
 
 trigger:
@@ -134,7 +134,7 @@ steps:
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
       tags: ["${DRONE_COMMIT_SHA}-exec-env", "${DRONE_COMMIT_BRANCH}-exec-env"]
       cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:dev-exec-env"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-exec-env"
 
 trigger:
@@ -162,7 +162,7 @@ steps:
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
       tags: ["${DRONE_COMMIT_SHA}-exec-env-arm64", "${DRONE_COMMIT_BRANCH}-exec-env-arm64"]
       cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:dev-exec-env-arm64"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-exec-env-arm64"
 
 trigger:
@@ -198,7 +198,7 @@ steps:
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
       tags: ["${DRONE_COMMIT_SHA}-torch-cpu", "${DRONE_COMMIT_BRANCH}-torch-cpu"]
       cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:dev-torch-cpu"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu"
 
 depends_on:
@@ -229,7 +229,7 @@ steps:
       repo: "registry.dev.onetask.ai/${DRONE_REPO}"
       tags: ["${DRONE_COMMIT_SHA}-torch-cpu-arm64", "${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"]
       cache_from:
-        - "registry.dev.onetask.ai/${DRONE_REPO}:dev_arm64"
+        - "registry.dev.onetask.ai/${DRONE_REPO}:dev-torch-cpu-arm64"
         - "registry.dev.onetask.ai/${DRONE_REPO}:${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"
 
 depends_on:
