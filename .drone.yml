@@ -184,8 +184,6 @@ steps:
     image: alpine
     commands:
       - sed -i 's/CURRENT_BRANCH_NAME/${DRONE_COMMIT_BRANCH}/' torch-cpu.dev.Dockerfile
-      - cat torch-cpu.dev.Dockerfile
-      - echo ${DRONE_COMMIT_BRANCH}
   - name: build and publish
     image: plugins/docker
     settings:
@@ -217,10 +215,14 @@ platform:
   arch: arm64
 
 steps:
+  - name: set base file
+    image: alpine
+    commands:
+      - sed -i 's/CURRENT_BRANCH_NAME/${DRONE_COMMIT_BRANCH}/' torch-cpu.dev.arm64.Dockerfile
   - name: build and publish
     image: plugins/docker
     settings:
-      dockerfile: torch-cpu.dev.Dockerfile
+      dockerfile: torch-cpu.dev.arm64.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
