@@ -2,9 +2,9 @@
 
 # version needs to be changed in build and push_to_dockerhub script and in the
 # torch-cpu.Dockerfile
-VERSION=v1.5.0
+source versions
 
-docker build -t kernai/refinery-parent-images:$VERSION-mini -f mini.Dockerfile .
-docker build -t kernai/refinery-parent-images:$VERSION-common -f common.Dockerfile .
-docker build -t kernai/refinery-parent-images:$VERSION-exec-env -f exec-env.Dockerfile .
-docker build -t kernai/refinery-parent-images:$VERSION-torch-cpu -f torch-cpu.Dockerfile .
+docker build -t kernai/refinery-parent-images:$MINI_VERSION-mini -f mini.Dockerfile .
+docker build -t kernai/refinery-parent-images:$COMMON_VERSION-common -f common.Dockerfile .
+docker build -t registry.dev.onetask.ai/refinery-parent-images:$EXEC_ENV_VERSION-exec-env -f exec-env.Dockerfile .
+docker build -t kernai/refinery-parent-images:$TORCH_CPU_VERSION-torch-cpu -f torch-cpu.Dockerfile .

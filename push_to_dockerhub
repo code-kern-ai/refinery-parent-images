@@ -2,11 +2,11 @@
 
 # version needs to be changed in build and push_to_dockerhub script and in the
 # torch-cpu.Dockerfile
-VERSION=v1.5.0
+source versions
 PLATFORMS=linux/amd64,linux/arm64
 
 # both platforms: amd64 and arm64
-docker buildx build -t kernai/refinery-parent-images:$VERSION-mini -f mini.Dockerfile --platform $PLATFORMS --push .
-docker buildx build -t kernai/refinery-parent-images:$VERSION-common -f common.Dockerfile --platform $PLATFORMS --push .
-docker buildx build -t kernai/refinery-parent-images:$VERSION-exec-env -f exec-env.Dockerfile --platform $PLATFORMS --push .
-docker buildx build -t kernai/refinery-parent-images:$VERSION-torch-cpu -f torch-cpu.Dockerfile --platform $PLATFORMS --push .
+docker buildx build -t kernai/refinery-parent-images:$MINI_VERSION-mini -f mini.Dockerfile --platform $PLATFORMS --push .
+docker buildx build -t kernai/refinery-parent-images:$COMMON_VERSION-common -f common.Dockerfile --platform $PLATFORMS --push .
+docker buildx build -t kernai/refinery-parent-images:$EXEC_ENV_VERSION-exec-env -f exec-env.Dockerfile --platform $PLATFORMS --push .
+docker buildx build -t kernai/refinery-parent-images:$TORCH_CPU_VERSION-torch-cpu -f torch-cpu.Dockerfile --platform $PLATFORMS --push .

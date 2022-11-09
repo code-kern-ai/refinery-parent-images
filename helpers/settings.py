@@ -61,10 +61,12 @@ DEV_DOCKERFILE = "dev.Dockerfile"
 ###
 # Format strings docker parent images
 ###
-MINI_PARENT_IMAGE = "kernai/refinery-parent-images:{version}-mini"
-COMMON_PARENT_IMAGE = "kernai/refinery-parent-images:{version}-common"
-EXEC_ENV_PARENT_IMAGE = "kernai/refinery-parent-images:{version}-exec-env"
-TORCH_CPU_PARENT_IMAGE = "kernai/refinery-parent-images:{version}-torch-cpu"
+DOCKERHUB_REGISTRY = "kernai"
+ONETASK_REGISTRY = "registry.dev.onetask.ai"
+MINI_PARENT_IMAGE = "{registry}/refinery-parent-images:{version}-mini"
+COMMON_PARENT_IMAGE = "{registry}/refinery-parent-images:{version}-common"
+EXEC_ENV_PARENT_IMAGE = "{registry}/refinery-parent-images:{version}-exec-env"
+TORCH_CPU_PARENT_IMAGE = "{registry}/refinery-parent-images:{version}-torch-cpu"
 
 ###
 # Requirements files
@@ -75,3 +77,12 @@ MINI_REQUIREMENTS = "mini-requirements.txt"
 COMMON_REQUIREMENTS = "common-requirements.txt"
 EXEC_ENV_REQUIREMENTS = "exec-env-requirements.txt"
 TORCH_CPU_REQUIREMENTS = "torch-cpu-requirements.txt"
+
+###
+# Versions file
+###
+VERSIONS_FILE = "versions"
+MINI_VERSION = "MINI_VERSION"
+COMMON_VERSION = "COMMON_VERSION"
+EXEC_ENV_VERSION = "EXEC_ENV_VERSION"
+TORCH_CPU_VERSION = "TORCH_CPU_VERSION"
