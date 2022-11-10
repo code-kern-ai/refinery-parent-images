@@ -243,7 +243,7 @@
 #   event:
 #     - push
 
----
+# ---
 kind: pipeline
 type: docker
 name: amd64-mini-dockerhub
