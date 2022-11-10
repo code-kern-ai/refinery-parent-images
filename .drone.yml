@@ -252,6 +252,10 @@ platform:
   arch: amd64
 
 steps:
+  - name: print env
+    image: alpine
+    commands:
+    - env
   - name: build and publish
     image: plugins/docker
     settings:
@@ -261,7 +265,7 @@ steps:
       password:
         from_secret: dockerhub_password
       repo: "kernai/test"
-      tag: "$${MINI_VERSION}-mini-drone-amd64"
+      tag: "${MINI_VERSION}-mini-drone-amd64"
 
 trigger:
   event:
@@ -285,7 +289,7 @@ steps:
       password:
         from_secret: dockerhub_password
       repo: "kernai/test"
-      tag: "$${MINI_VERSION}-mini-drone-arm64"
+      tag: "${MINI_VERSION}-mini-drone-arm64"
 
 trigger:
   event:
